@@ -108,6 +108,16 @@ CREATE TABLE dbo.Results (
     CONSTRAINT CHK_Finishing_Position CHECK (FinishingPosition > 0)
 );
 
+INSERT INTO dbo.Users
+    (Email, PasswordHash, FirstName, LastName, Role, ContactNumber, ProfilePictureUrl)
+VALUES
+('sipho.organiser@raceday.co.za', '$2a$11$SubvQfK01pA2R78XyT/J8u0rW8z6jZ/8V8vD/K4D9.FkK4X.w6RKi', 'Sipho', 'Khumalo', 'Organiser', '+27821111111', NULL),
+('elena.organiser@raceday.co.za', '$2a$11$SubvQfK01pA2R78XyT/J8u0rW8z6jZ/8V8vD/K4D9.FkK4X.w6RKi', 'Elena', 'Naidoo', 'Organiser', '+27832222222', NULL),
+('jabu.runner@gmail.com', '$2a$11$SubvQfK01pA2R78XyT/J8u0rW8z6jZ/8V8vD/K4D9.FkK4X.w6RKi', 'Jabu', 'Mthembu', 'Participant', '+27723333333', NULL),
+('jan.runner@mweb.co.za', '$2a$11$SubvQfK01pA2R78XyT/J8u0rW8z6jZ/8V8vD/K4D9.FkK4X.w6RKi', 'Jan', 'van der Merwe', 'Participant', '+27844444444', NULL),
+('robert.davis@architects.co.za', '$2a$11$SubvQfK01pA2R78XyT/J8u0rW8z6jZ/8V8vD/K4D9.FkK4X.w6RKi', 'Robert', 'Davis', 'Participant', '+27815555555', NULL);
+
+
 
     CONSTRAINT PK_Events PRIMARY KEY CLUSTERED (EventId),
     CONSTRAINT CHK_Event_Type CHECK (EventType IN ('Run', 'Walk', 'Cycle')),
