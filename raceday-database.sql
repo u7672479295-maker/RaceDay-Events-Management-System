@@ -168,3 +168,17 @@ VALUES
 (1, '07:22:15', 423, 0, 'Silver medal finisher.'),
 (2, '08:55:04', 1540, 0, 'Bill Rowan medal finisher.'),
 (3, '06:12:30', 87, 0, 'Wally Hayward medal finisher. Sensational race!');
+
+SELECT
+    e.Name AS [Race Event],
+    u.FirstName + ' ' + u.LastName AS [Athlete],
+    c.Name AS [Division],
+    en.EnrolmentStatus AS [Reg Status],
+    r.FinishTime AS [Elapsed Time],
+    r.FinishingPosition AS [Position],
+    r.Notes AS [Judge Notes]
+FROM dbo.Enrolments AS en
+INNER JOIN dbo.Users AS u ON en.ParticipantUserId = u.UserId
+INNER JOIN dbo.Events AS e ON en.EventId = e.EventId
+INNER JOIN dbo.Categories AS c ON en.CategoryId = c.CategoryId
+LEFT JOIN dbo.Results AS r ON en.EnrolmentId = r.EnrolmentId;
