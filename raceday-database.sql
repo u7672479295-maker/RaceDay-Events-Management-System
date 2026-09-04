@@ -140,3 +140,14 @@ VALUES
 ('Soweto Fun Walk', 'A family and community walk celebrating historic sites and heritage across Soweto.', '2027-10-10 08:00:00', 'Soweto, Johannesburg', '10km', 'Walk', 1, NULL);
 
 
+INSERT INTO dbo.Categories
+    (EventId, Name, Description, RegistrationFee)
+VALUES
+(1, 'Senior (20-39)', 'Open age group division for standard entries.', 550.00),
+(1, 'Veteran (40-49)', 'Division targeting experienced master runners.', 550.00),
+(1, 'Master (50-59)', 'Senior division for seasoned competitive athletes.', 550.00),
+(2, 'Elite Men', 'Professional male category under standard UCI guidelines.', 750.00),
+(2, 'Elite Women', 'Professional female category under standard UCI guidelines.', 750.00),
+(2, 'Open 109km', 'General public timing group for full peninsula tour.', 600.00),
+(3, 'Open 10km', 'A timed 10km community walk across the historic Soweto route.', 150.00),
+(3, 'Fun 5km', 'An untimed 5km community fun run and walk suitable for all ages.', 100.00);
