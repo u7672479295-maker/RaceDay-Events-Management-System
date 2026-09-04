@@ -28,4 +28,18 @@ CREATE TABLE dbo.Users (
           CONSTRAINT CHK_User_Role_Check (Role IN ('Organiser', 'Participant')
   );
   
-    
+    CREATE TABLE dbo.EmergencyContacts (
+    EmergencyContactId INT IDENTITY(1,1) NOT NULL,
+    ParticipantUserId INT NOT NULL,
+    ContactName NVARCHAR(200) NOT NULL,
+    ContactNumber NVARCHAR(20) NOT NULL,
+    Relationship NVARCHAR(100) NOT NULL,
+    MedicalAidName NVARCHAR(100) NULL,
+    MedicalAidNumber NVARCHAR(50) NULL,
+
+    CONSTRAINT PK_EmergencyContacts PRIMARY KEY CLUSTERED (EmergencyContactId),
+    CONSTRAINT UQ_EmergencyContacts_User UNIQUE NONCLUSTERED (ParticipantUserId),
+    CONSTRAINT FK_EmergencyContacts_Users FOREIGN KEY (ParticipantUserId)
+        REFERENCES dbo.Users (UserId) ON DELETE CASCADE
+);
+
