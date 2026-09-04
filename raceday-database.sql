@@ -92,6 +92,22 @@ CREATE TABLE dbo.Enrolments (
         REFERENCES dbo.Categories (CategoryId)
 );
 
+CREATE TABLE dbo.Results (
+    ResultId INT IDENTITY(1,1) NOT NULL,
+    EnrolmentId INT NOT NULL,
+    FinishTime NVARCHAR(50) NOT NULL,
+    FinishingPosition INT NOT NULL,
+    IsDisqualified BIT NOT NULL
+        CONSTRAINT DF_Results_IsDisqualified DEFAULT 0,
+    Notes NVARCHAR(500) NULL,
+
+    CONSTRAINT PK_Results PRIMARY KEY CLUSTERED (ResultId),
+    CONSTRAINT UQ_Results_Enrolment UNIQUE NONCLUSTERED (EnrolmentId),
+    CONSTRAINT FK_Results_Enrolments FOREIGN KEY (EnrolmentId)
+        REFERENCES dbo.Enrolments (EnrolmentId) ON DELETE CASCADE,
+    CONSTRAINT CHK_Finishing_Position CHECK (FinishingPosition > 0)
+);
+
 
     CONSTRAINT PK_Events PRIMARY KEY CLUSTERED (EventId),
     CONSTRAINT CHK_Event_Type CHECK (EventType IN ('Run', 'Walk', 'Cycle')),
