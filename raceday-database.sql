@@ -160,3 +160,11 @@ VALUES
 (5, 1, 3, 'Confirmed'),
 (3, 2, 6, 'Confirmed');
 
+
+
+INSERT INTO dbo.Results
+    (EnrolmentId, FinishTime, FinishingPosition, IsDisqualified, Notes)
+VALUES
+(1, '07:22:15', 423, 0, 'Silver medal finisher.'),
+(2, '08:55:04', 1540, 0, 'Bill Rowan medal finisher.'),
+(3, '06:12:30', 87, 0, 'Wally Hayward medal finisher. Sensational race!');
