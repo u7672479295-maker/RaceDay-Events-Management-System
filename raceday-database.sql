@@ -56,6 +56,20 @@ CREATE TABLE dbo.Events (
     DateCreated DATETIME2 NOT NULL
         CONSTRAINT DF_Events_DateCreated DEFAULT GETDATE(),
 
+    CREATE TABLE dbo.Categories (
+    CategoryId INT IDENTITY(1,1) NOT NULL,
+    EventId INT NOT NULL,
+    Name NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(500) NULL,
+    RegistrationFee DECIMAL(10,2) NOT NULL
+        CONSTRAINT DF_Categories_Fee DEFAULT 0.00,
+
+    CONSTRAINT PK_Categories PRIMARY KEY CLUSTERED (CategoryId),
+    CONSTRAINT FK_Categories_Events FOREIGN KEY (EventId)
+        REFERENCES dbo.Events (EventId) ON DELETE CASCADE
+);
+
+
     CONSTRAINT PK_Events PRIMARY KEY CLUSTERED (EventId),
     CONSTRAINT CHK_Event_Type CHECK (EventType IN ('Run', 'Walk', 'Cycle')),
     CONSTRAINT FK_Events_Users FOREIGN KEY (CreatedByUserId)
