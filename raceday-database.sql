@@ -43,3 +43,21 @@ CREATE TABLE dbo.Users (
         REFERENCES dbo.Users (UserId) ON DELETE CASCADE
 );
 
+CREATE TABLE dbo.Events (
+    EventId INT IDENTITY(1,1) NOT NULL,
+    Name NVARCHAR(200) NOT NULL,
+    Description NVARCHAR(MAX) NULL,
+    Date DATETIME2 NOT NULL,
+    Location NVARCHAR(200) NOT NULL,
+    Distance NVARCHAR(50) NOT NULL,
+    EventType NVARCHAR(50) NOT NULL,
+    CreatedByUserId INT NOT NULL,
+    BannerImageUrl NVARCHAR(1000) NULL,
+    DateCreated DATETIME2 NOT NULL
+        CONSTRAINT DF_Events_DateCreated DEFAULT GETDATE(),
+
+    CONSTRAINT PK_Events PRIMARY KEY CLUSTERED (EventId),
+    CONSTRAINT CHK_Event_Type CHECK (EventType IN ('Run', 'Walk', 'Cycle')),
+    CONSTRAINT FK_Events_Users FOREIGN KEY (CreatedByUserId)
+        REFERENCES dbo.Users (UserId)
+);
