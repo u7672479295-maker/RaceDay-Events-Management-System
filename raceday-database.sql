@@ -124,3 +124,11 @@ VALUES
     CONSTRAINT FK_Events_Users FOREIGN KEY (CreatedByUserId)
         REFERENCES dbo.Users (UserId)
 );
+
+INSERT INTO dbo.EmergencyContacts
+    (ParticipantUserId, ContactName, ContactNumber, Relationship, MedicalAidName, MedicalAidNumber)
+VALUES
+(3, 'Thandi Mthembu', '+27725556666', 'Spouse', 'Discovery Health', '9988112233'),
+(4, 'Elize van der Merwe', '+27849998888', 'Wife', 'GEMS', '5544332211'),
+(5, 'Sarah Davis', '+27819997777', 'Wife', 'Medihelp', '7766554433');
+
