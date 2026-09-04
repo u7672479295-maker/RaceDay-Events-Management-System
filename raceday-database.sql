@@ -132,3 +132,11 @@ VALUES
 (4, 'Elize van der Merwe', '+27849998888', 'Wife', 'GEMS', '5544332211'),
 (5, 'Sarah Davis', '+27819997777', 'Wife', 'Medihelp', '7766554433');
 
+INSERT INTO dbo.Events
+    (Name, Description, Date, Location, Distance, EventType, CreatedByUserId, BannerImageUrl)
+VALUES
+('Comrades Marathon 2027', 'The ultimate human race - 89km up-run from Durban to Pietermaritzburg.', '2027-06-13 05:30:00', 'Durban to Pietermaritzburg', '89km', 'Run', 1, NULL),
+('Cape Town Cycle Tour 2027', 'The world''s largest individually timed cycle race, covering a scenic route around the Cape Peninsula.', '2027-03-14 06:15:00', 'Cape Town', '109km', 'Cycle', 2, NULL),
+('Soweto Fun Walk', 'A family and community walk celebrating historic sites and heritage across Soweto.', '2027-10-10 08:00:00', 'Soweto, Johannesburg', '10km', 'Walk', 1, NULL);
+
+
