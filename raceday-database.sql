@@ -69,6 +69,29 @@ CREATE TABLE dbo.Events (
         REFERENCES dbo.Events (EventId) ON DELETE CASCADE
 );
 
+CREATE TABLE dbo.Enrolments (
+    EnrolmentId INT IDENTITY(1,1) NOT NULL,
+    ParticipantUserId INT NOT NULL,
+    EventId INT NOT NULL,
+    CategoryId INT NOT NULL,
+    EnrolmentDate DATETIME2 NOT NULL
+        CONSTRAINT DF_Enrolments_Date DEFAULT GETDATE(),
+    EnrolmentStatus NVARCHAR(50) NOT NULL
+        CONSTRAINT DF_Enrolments_Status DEFAULT 'Pending',
+
+    CONSTRAINT PK_Enrolments PRIMARY KEY CLUSTERED (EnrolmentId),
+    CONSTRAINT UQ_Participant_Event UNIQUE NONCLUSTERED
+        (ParticipantUserId, EventId),
+    CONSTRAINT CHK_Enrolment_Status CHECK
+        (EnrolmentStatus IN ('Pending', 'Confirmed', 'Cancelled')),
+    CONSTRAINT FK_Enrolments_Users FOREIGN KEY (ParticipantUserId)
+        REFERENCES dbo.Users (UserId),
+    CONSTRAINT FK_Enrolments_Events FOREIGN KEY (EventId)
+        REFERENCES dbo.Events (EventId),
+    CONSTRAINT FK_Enrolments_Categories FOREIGN KEY (CategoryId)
+        REFERENCES dbo.Categories (CategoryId)
+);
+
 
     CONSTRAINT PK_Events PRIMARY KEY CLUSTERED (EventId),
     CONSTRAINT CHK_Event_Type CHECK (EventType IN ('Run', 'Walk', 'Cycle')),
