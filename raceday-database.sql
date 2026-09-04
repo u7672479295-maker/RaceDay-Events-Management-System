@@ -151,3 +151,12 @@ VALUES
 (2, 'Open 109km', 'General public timing group for full peninsula tour.', 600.00),
 (3, 'Open 10km', 'A timed 10km community walk across the historic Soweto route.', 150.00),
 (3, 'Fun 5km', 'An untimed 5km community fun run and walk suitable for all ages.', 100.00);
+
+INSERT INTO dbo.Enrolments
+    (ParticipantUserId, EventId, CategoryId, EnrolmentStatus)
+VALUES
+(3, 1, 1, 'Confirmed'),
+(4, 1, 2, 'Confirmed'),
+(5, 1, 3, 'Confirmed'),
+(3, 2, 6, 'Confirmed');
+
